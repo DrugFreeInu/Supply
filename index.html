@@ -163,17 +163,17 @@ body {
   <div class="paper">
 
     <!-- title -->
-    <div class="title" id="title">$UPPLY</div>
+    <div class="title">DFI SUPPLY</div>
 
     <!-- language toggle -->
     <button class="lang-toggle" onclick="toggleMenu()">▾</button>
 
     <!-- dropdown -->
     <div class="lang-menu" id="langMenu">
-      <button onclick="setLanguage('latin')">1 – Latin</button>
-      <button onclick="setLanguage('roman')">Ⅰ – Roman</button>
-      <button onclick="setLanguage('arabic')">١ – Arabic</button>
-      <button onclick="setLanguage('chinese')">一 – Chinese</button>
+      <button onclick="setNumbers('latin')">1 – Latin</button>
+      <button onclick="setNumbers('roman')">Ⅰ – Roman</button>
+      <button onclick="setNumbers('arabic')">١ – Arabic</button>
+      <button onclick="setNumbers('chinese')">一 – Chinese</button>
     </div>
 
     <!-- numbers -->
@@ -190,20 +190,9 @@ const numberSets = {
   chinese: ["一","二","三","四","五","六","七","八","九","十","十一","十二"]
 };
 
-const supplyWords = {
-  latin: "SUPPLY",
-  roman: "SUPPLY",
-  arabic: "الإمداد",
-  chinese: "供应"
-};
-
-function setLanguage(type) {
+function setNumbers(type) {
   document.getElementById("numbers").innerHTML =
     numberSets[type].join("<br>");
-
-  document.getElementById("title").innerText =
-    "$" + supplyWords[type];
-
   document.getElementById("langMenu").style.display = "none";
 }
 
@@ -213,7 +202,7 @@ function toggleMenu() {
 }
 
 /* default */
-setLanguage("latin");
+setNumbers("latin");
 </script>
 
 </body>
