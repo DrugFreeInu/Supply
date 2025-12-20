@@ -65,21 +65,42 @@ body {
   z-index: 2;
 }
 
-/* ===== TITLE ===== */
+/* ===== PENCIL TITLE ===== */
 .title {
   position: absolute;
-  top: 36px;
+  top: 38px;
   left: 0;
   right: 0;
-
   text-align: center;
 
   font-size: 42px;
   font-weight: 800;
   letter-spacing: 2px;
 
-  color: #000000;
+  color: #2b2b2b;
+
+  /* pencil effect */
+  text-shadow:
+    0.6px 0.6px 0 rgba(0,0,0,0.25),
+    -0.4px 0.2px 0 rgba(0,0,0,0.18),
+    0.3px -0.5px 0 rgba(0,0,0,0.2),
+    1.2px 1.2px 2px rgba(0,0,0,0.15);
+
+  filter: contrast(1.05) saturate(0.85);
   z-index: 3;
+  pointer-events: none;
+}
+
+/* subtle graphite grain */
+.title::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  text-shadow:
+    0 0 1px rgba(0,0,0,0.15),
+    0 0 2px rgba(0,0,0,0.12);
+  mix-blend-mode: multiply;
   pointer-events: none;
 }
 
@@ -165,8 +186,8 @@ body {
 <div class="paper-wrap">
   <div class="paper">
 
-    <!-- title -->
-    <div class="title">DFI SUPPLY</div>
+    <!-- pencil title -->
+    <div class="title" data-text="DFI SUPPLY">DFI SUPPLY</div>
 
     <!-- language toggle -->
     <button class="lang-toggle" onclick="toggleMenu()">▾</button>
