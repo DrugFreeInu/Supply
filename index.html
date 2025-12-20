@@ -28,7 +28,6 @@ body {
   width: 100%;
   min-height: 900px;
 
-  /* wider-spaced ruled paper */
   background:
     repeating-linear-gradient(
       to bottom,
@@ -66,18 +65,50 @@ body {
   z-index: 2;
 }
 
-/* ===== NUMBERS (SHIFTED DOWN 1 LINE) ===== */
+/* ===== NUMBERS ===== */
 .numbers {
   position: absolute;
-  top: 180px;           /* was 120px → moved down 1 line (60px) */
-  left: 30px;
-  width: 40px;
-  text-align: right;
-  font-size: 20px;
+  top: 180px;
+  left: 18px;
+  width: 56px;
+  text-align: center;
+
+  font-size: 24px;
+  font-weight: 700;
   line-height: 60px;
+
   color: #8b7aa8;
   z-index: 3;
   pointer-events: none;
+}
+
+/* ===== LANGUAGE DROPDOWN BUTTON (CENTERED) ===== */
+.lang-toggle {
+  position: absolute;
+  top: 42px;          /* centered vertically in top margin */
+  left: 18px;         /* centered horizontally in margin */
+  width: 56px;
+  height: 44px;
+
+  border: 2px solid #8b7aa8;
+  border-radius: 10px;
+  background: #ffffff;
+
+  color: #8b7aa8;
+  font-size: 26px;    /* bigger arrow */
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  z-index: 4;
+}
+
+/* subtle hover */
+.lang-toggle:hover {
+  background: #f3f0f8;
 }
 </style>
 </head>
@@ -86,10 +117,18 @@ body {
 
 <div class="paper-wrap">
   <div class="paper">
+
+    <!-- language / numbering system toggle -->
+    <button class="lang-toggle">
+      ▾
+    </button>
+
+    <!-- numbers -->
     <div class="numbers">
       1<br>2<br>3<br>4<br>5<br>6<br>
       7<br>8<br>9<br>10<br>11<br>12
     </div>
+
   </div>
 </div>
 
