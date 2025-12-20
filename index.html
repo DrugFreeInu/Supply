@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blank Paper</title>
+
+<style>
+/* ===== PAGE ===== */
+body {
+  margin: 0;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===== PAPER ===== */
+.paper {
+  position: relative;
+  width: 700px;
+  min-height: 900px;
+
+  /* wider-spaced ruled paper */
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #ffffff 0px,
+      #ffffff 58px,
+      #cfe1ff 59px,
+      #ffffff 60px
+    );
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+/* TOP MASK — LEAVE 1 LINE VISIBLE */
+.paper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 120px; /* was 180px */
+  background: #ffffff;
+  z-index: 1;
+}
+
+/* MUTED PURPLE MARGIN LINE */
+.paper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 90px;
+  width: 4px;
+  background: #8b7aa8;
+  z-index: 2;
+}
+</style>
+</head>
+
+<body>
+
+<div class="paper">
+  <!-- intentionally blank -->
+</div>
+
+</body>
+</html>
