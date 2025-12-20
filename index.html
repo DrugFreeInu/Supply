@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Blank Paper</title>
+<title>DFI Supply Paper</title>
 
 <style>
 /* ===== PAGE ===== */
@@ -63,6 +63,21 @@ body {
   width: 4px;
   background: #8b7aa8;
   z-index: 2;
+}
+
+/* ===== TITLE ===== */
+.title {
+  position: absolute;
+  top: 36px;
+  left: 120px;
+
+  font-size: 42px;
+  font-weight: 800;
+  letter-spacing: 2px;
+
+  color: #000000;
+  z-index: 3;
+  pointer-events: none;
 }
 
 /* ===== NUMBERS ===== */
@@ -146,6 +161,9 @@ body {
 
 <div class="paper-wrap">
   <div class="paper">
+
+    <!-- title -->
+    <div class="title">DFI $UPPLY</div>
 
     <!-- language toggle -->
     <button class="lang-toggle" onclick="toggleMenu()">▾</button>
