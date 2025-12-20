@@ -41,7 +41,7 @@ body {
   overflow: hidden;
 }
 
-/* TOP MASK — LEAVE 1 LINE VISIBLE */
+/* TOP MASK */
 .paper::after {
   content: "";
   position: absolute;
@@ -82,11 +82,11 @@ body {
   pointer-events: none;
 }
 
-/* ===== LANGUAGE DROPDOWN BUTTON (CENTERED) ===== */
+/* ===== LANGUAGE BUTTON ===== */
 .lang-toggle {
   position: absolute;
-  top: 42px;          /* centered vertically in top margin */
-  left: 18px;         /* centered horizontally in margin */
+  top: 42px;
+  left: 18px;
   width: 56px;
   height: 44px;
 
@@ -95,7 +95,7 @@ body {
   background: #ffffff;
 
   color: #8b7aa8;
-  font-size: 26px;    /* bigger arrow */
+  font-size: 26px;
   font-weight: 700;
 
   display: flex;
@@ -106,8 +106,37 @@ body {
   z-index: 4;
 }
 
-/* subtle hover */
-.lang-toggle:hover {
+/* ===== DROPDOWN ===== */
+.lang-menu {
+  position: absolute;
+  top: 92px;
+  left: 18px;
+  width: 120px;
+
+  background: #ffffff;
+  border: 2px solid #8b7aa8;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+
+  display: none;
+  z-index: 5;
+}
+
+.lang-menu button {
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  text-align: left;
+
+  font-size: 16px;
+  font-weight: 600;
+  color: #8b7aa8;
+
+  cursor: pointer;
+}
+
+.lang-menu button:hover {
   background: #f3f0f8;
 }
 </style>
@@ -118,19 +147,45 @@ body {
 <div class="paper-wrap">
   <div class="paper">
 
-    <!-- language / numbering system toggle -->
-    <button class="lang-toggle">
-      ▾
-    </button>
+    <!-- language toggle -->
+    <button class="lang-toggle" onclick="toggleMenu()">▾</button>
+
+    <!-- dropdown -->
+    <div class="lang-menu" id="langMenu">
+      <button onclick="setNumbers('latin')">1 – Latin</button>
+      <button onclick="setNumbers('roman')">Ⅰ – Roman</button>
+      <button onclick="setNumbers('arabic')">١ – Arabic</button>
+      <button onclick="setNumbers('chinese')">一 – Chinese</button>
+    </div>
 
     <!-- numbers -->
-    <div class="numbers">
-      1<br>2<br>3<br>4<br>5<br>6<br>
-      7<br>8<br>9<br>10<br>11<br>12
-    </div>
+    <div class="numbers" id="numbers"></div>
 
   </div>
 </div>
+
+<script>
+const numberSets = {
+  latin: ["1","2","3","4","5","6","7","8","9","10","11","12"],
+  roman: ["Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ","Ⅸ","Ⅹ","Ⅺ","Ⅻ"],
+  arabic: ["١","٢","٣","٤","٥","٦","٧","٨","٩","١٠","١١","١٢"],
+  chinese: ["一","二","三","四","五","六","七","八","九","十","十一","十二"]
+};
+
+function setNumbers(type) {
+  document.getElementById("numbers").innerHTML =
+    numberSets[type].join("<br>");
+  document.getElementById("langMenu").style.display = "none";
+}
+
+function toggleMenu() {
+  const menu = document.getElementById("langMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+}
+
+/* default */
+setNumbers("latin");
+</script>
 
 </body>
 </html>
