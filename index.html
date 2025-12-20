@@ -66,14 +66,18 @@ body {
   z-index: 2;
 }
 
-/* ===== NUMBERS OVERLAY ===== */
-.numbers-frame {
+/* ===== NUMBERS (DIRECT ON PAPER) ===== */
+.numbers {
   position: absolute;
-  inset: 0;
-  border: none;
-  background: transparent;
+  top: 120px;           /* aligns with first visible line */
+  left: 30px;           /* left of margin */
+  width: 40px;
+  text-align: right;
+  font-size: 20px;
+  line-height: 60px;    /* matches ruled spacing */
+  color: #8b7aa8;
   z-index: 3;
-  pointer-events: none; /* paper still usable */
+  pointer-events: none;
 }
 </style>
 </head>
@@ -81,14 +85,12 @@ body {
 <body>
 
 <div class="paper-wrap">
-  <div class="paper"></div>
-
-  <!-- numbers layer -->
-  <iframe
-    src="numbers.html"
-    class="numbers-frame"
-    scrolling="no"
-  ></iframe>
+  <div class="paper">
+    <div class="numbers">
+      1<br>2<br>3<br>4<br>5<br>6<br>
+      7<br>8<br>9<br>10<br>11<br>12
+    </div>
+  </div>
 </div>
 
 </body>
