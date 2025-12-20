@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Numbered Paper</title>
+
+<style>
+/* ===== PAGE ===== */
+body {
+  margin: 0;
+  background: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ===== PAPER ===== */
+.paper {
+  position: relative;
+  width: 700px;
+  min-height: 900px;
+
+  /* wider-spaced ruled paper */
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      #ffffff 0px,
+      #ffffff 58px,
+      #cfe1ff 59px,
+      #ffffff 60px
+    );
+
+  box-shadow: 0 10px 40px rgba(0,0,0,0.12);
+  overflow: hidden;
+}
+
+/* REMOVE TOP SPACE (1 LINE ONLY) */
+.paper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: #ffffff;
+  z-index: 1;
+}
+
+/* MUTED PURPLE MARGIN LINE */
+.paper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 90px;
+  width: 4px;
+  background: #8b7aa8;
+  z-index: 2;
+}
+
+/* ===== NUMBERS ===== */
+.numbers {
+  position: absolute;
+  top: 60px;
+  left: 30px;
+  z-index: 3;
+  color: #8b7aa8;
+  font-size: 20px;
+  line-height: 60px;
+  text-align: right;
+  width: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="paper">
+
+  <div class="numbers">
+    1<br>2<br>3<br>4<br>5<br>6<br>
+    7<br>8<br>9<br>10<br>11<br>12
+  </div>
+
+</div>
+
+</body>
+</html>
