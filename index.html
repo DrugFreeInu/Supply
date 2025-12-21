@@ -27,7 +27,6 @@ body {
   position: relative;
   width: 100%;
   min-height: 900px;
-
   background:
     repeating-linear-gradient(
       to bottom,
@@ -36,7 +35,6 @@ body {
       #cfe1ff 59px,
       #ffffff 60px
     );
-
   box-shadow: 0 10px 40px rgba(0,0,0,0.12);
   overflow: hidden;
 }
@@ -69,7 +67,7 @@ body {
 .header-image {
   position: absolute;
   top: 28px;
-  left: 100px; /* moved slightly left */
+  left: 96px; /* ← moved left slightly, visible but safe */
   right: 20px;
 
   display: flex;
@@ -100,11 +98,9 @@ body {
   left: 18px;
   width: 56px;
   text-align: center;
-
   font-size: 24px;
   font-weight: 700;
   line-height: 60px;
-
   color: #8b7aa8;
   z-index: 3;
   pointer-events: none;
@@ -117,19 +113,15 @@ body {
   left: 18px;
   width: 56px;
   height: 44px;
-
   border: 2px solid #8b7aa8;
   border-radius: 10px;
   background: #ffffff;
-
   color: #8b7aa8;
   font-size: 26px;
   font-weight: 700;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
   z-index: 4;
 }
@@ -140,12 +132,10 @@ body {
   top: 92px;
   left: 18px;
   width: 120px;
-
   background: #ffffff;
   border: 2px solid #8b7aa8;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-
   display: none;
   z-index: 5;
 }
@@ -156,11 +146,9 @@ body {
   background: none;
   border: none;
   text-align: left;
-
   font-size: 16px;
   font-weight: 600;
   color: #8b7aa8;
-
   cursor: pointer;
 }
 
