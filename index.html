@@ -74,7 +74,7 @@ body {
 
   display: flex;
   align-items: center;
-  gap: 22px; /* space between graphics */
+  gap: 22px;
 
   z-index: 3;
   pointer-events: none;
@@ -87,8 +87,8 @@ body {
 }
 
 .header-image img.side {
-  max-width: 160px;
-  max-height: 110px;
+  max-width: 192px;   /* +20% */
+  max-height: 110px;  /* safety ceiling */
   object-fit: contain;
   opacity: 0.95;
 }
@@ -217,7 +217,6 @@ function toggleMenu() {
   menu.style.display = menu.style.display === "block" ? "none" : "block";
 }
 
-/* default */
 setNumbers("latin");
 </script>
 
