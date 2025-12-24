@@ -111,8 +111,16 @@ body {
   color: #111;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.content p[data-line] {
   cursor: pointer;
-  transition: opacity 0.25s ease;
+}
+
+.spacer {
+  color: transparent;
+  cursor: default;
+  pointer-events: none;
 }
 
 .subline {
@@ -120,10 +128,7 @@ body {
   color: #444;
   padding-left: 14px;
   display: none;
-}
-
-.spacer {
-  color: transparent;
+  pointer-events: none;
 }
 
 .hidden-line {
@@ -183,7 +188,7 @@ function hideNumbers(line) {
   });
 }
 
-document.querySelectorAll("[data-line]").forEach(p => {
+document.querySelectorAll(".content p[data-line]").forEach(p => {
   p.addEventListener("click", () => {
     const line = p.dataset.line;
 
