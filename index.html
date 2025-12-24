@@ -64,7 +64,6 @@ body {
   left: 94px;
   right: 20px;
   display: flex;
-  align-items: center;
   z-index: 3;
   pointer-events: none;
 }
@@ -86,6 +85,16 @@ body {
   color: #8b7aa8;
   z-index: 3;
   pointer-events: none;
+}
+
+.numbers span {
+  display: block;
+  height: 60px;
+  transition: opacity 0.25s ease;
+}
+
+.hidden-number {
+  opacity: 0;
 }
 
 .content {
@@ -185,7 +194,6 @@ body {
     <div class="numbers" id="numbers"></div>
 
     <div class="content" id="content">
-      <!-- moved up 1 row -->
       <p class="spacer">.</p>
 
       <p data-line="1">Creator Wallet: 5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h</p>
@@ -207,6 +215,16 @@ body {
 <script>
 let isolatedLine = null;
 
+function updateNumbersVisibility(activeLine) {
+  document.querySelectorAll(".numbers span").forEach(span => {
+    if (!activeLine) {
+      span.classList.remove("hidden-number");
+    } else if (span.dataset.line !== activeLine) {
+      span.classList.add("hidden-number");
+    }
+  });
+}
+
 document.querySelectorAll(".content p[data-line]").forEach(p => {
   p.addEventListener("click", () => {
     const line = p.dataset.line;
@@ -216,6 +234,7 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
       document.querySelectorAll(".content p").forEach(el =>
         el.classList.remove("hidden-line")
       );
+      updateNumbersVisibility(null);
     } else {
       isolatedLine = line;
       document.querySelectorAll(".content p").forEach(el => {
@@ -223,6 +242,7 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
           el.classList.add("hidden-line");
         }
       });
+      updateNumbersVisibility(line);
     }
   });
 });
@@ -235,8 +255,14 @@ const numberSets = {
 };
 
 function setNumbers(type) {
-  document.getElementById("numbers").innerHTML =
-    numberSets[type].join("<br>");
+  const container = document.getElementById("numbers");
+  container.innerHTML = "";
+  numberSets[type].forEach((n, i) => {
+    const span = document.createElement("span");
+    span.textContent = n;
+    span.dataset.line = ["","1","","2","","3","","4",""][i];
+    container.appendChild(span);
+  });
   document.getElementById("langMenu").style.display = "none";
 }
 
