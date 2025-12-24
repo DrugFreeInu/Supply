@@ -185,8 +185,7 @@ body {
     <div class="numbers" id="numbers"></div>
 
     <div class="content" id="content">
-      <!-- moved down 2 rows -->
-      <p class="spacer">.</p>
+      <!-- moved up 1 row -->
       <p class="spacer">.</p>
 
       <p data-line="1">Creator Wallet: 5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h</p>
@@ -229,10 +228,10 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
 });
 
 const numberSets = {
-  latin: ["","","1","","2","","3","","4",""],
-  roman: ["","","Ⅰ","","Ⅱ","","Ⅲ","","Ⅳ",""],
-  arabic: ["","","١","","٢","","٣","","٤",""],
-  chinese: ["","","一","","二","","三","","四",""]
+  latin: ["","1","","2","","3","","4",""],
+  roman: ["","Ⅰ","","Ⅱ","","Ⅲ","","Ⅳ",""],
+  arabic: ["","١","","٢","","٣","","٤",""],
+  chinese: ["","一","","二","","三","","四",""]
 };
 
 function setNumbers(type) {
