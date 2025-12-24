@@ -117,6 +117,10 @@ body {
   overflow: hidden;
 }
 
+.spacer {
+  color: transparent;
+}
+
 .lang-toggle {
   position: absolute;
   top: 42px;
@@ -186,20 +190,15 @@ body {
 
     <div class="numbers" id="numbers"></div>
 
-    <!-- EDIT TEXT HERE -->
     <div class="content">
       <p>Creator Wallet: 5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h</p>
+      <p class="spacer">.</p>
       <p>Coin Address: 6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump</p>
+      <p class="spacer">.</p>
       <p>Created on pump.fun https://pump.fun/coin/6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump</p>
+      <p class="spacer">.</p>
       <p>There are 700 million DFI coins</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
-      <p>Lorem ipsum dolor sit amet.</p>
+      <p class="spacer">.</p>
     </div>
 
   </div>
@@ -207,10 +206,10 @@ body {
 
 <script>
 const numberSets = {
-  latin: ["1","2","3","4","5","6","7","8","9","10","11","12"],
-  roman: ["Ⅰ","Ⅱ","Ⅲ","Ⅳ","Ⅴ","Ⅵ","Ⅶ","Ⅷ","Ⅸ","Ⅹ","Ⅺ","Ⅻ"],
-  arabic: ["١","٢","٣","٤","٥","٦","٧","٨","٩","١٠","١١","١٢"],
-  chinese: ["一","二","三","四","五","六","七","八","九","十","十一","十二"]
+  latin: ["1","","2","","3","","4",""],
+  roman: ["Ⅰ","","Ⅱ","","Ⅲ","","Ⅳ",""],
+  arabic: ["١","","٢","","٣","","٤",""],
+  chinese: ["一","","二","","三","","四",""]
 };
 
 function setNumbers(type) {
