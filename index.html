@@ -62,8 +62,6 @@ body {
   position: absolute;
   top: 28px;
   left: 94px;
-  right: 20px;
-  display: flex;
   z-index: 3;
   pointer-events: none;
 }
@@ -126,13 +124,11 @@ body {
 
 .spacer {
   color: transparent;
-  cursor: default;
 }
 
 .hidden-line {
   opacity: 0;
 }
-
 </style>
 </head>
 
@@ -147,22 +143,31 @@ body {
 
     <div class="numbers" id="numbers"></div>
 
-    <div class="content" id="content">
+    <div class="content">
       <p class="spacer">.</p>
 
       <p data-line="1">Creator Wallet</p>
-      <p class="subline" id="walletLine">
+      <p class="subline" id="walletSub">
         5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h
       </p>
       <p class="spacer">.</p>
 
       <p data-line="2">Coin Address</p>
+      <p class="subline" id="coinSub">
+        6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump
+      </p>
       <p class="spacer">.</p>
 
       <p data-line="3">pump.fun</p>
+      <p class="subline" id="pumpSub">
+        2BM4wL5ABNE2mAiXXwFCFsPqRaQ3HM8ZLmrsk2m2hsW9P1hsRtgeMiwdrksiwm9Xbit3DguMc1PbHoxYHkNbKUiZ
+      </p>
       <p class="spacer">.</p>
 
       <p data-line="4">Coin Supply</p>
+      <p class="subline" id="supplySub">
+        6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump
+      </p>
       <p class="spacer">.</p>
     </div>
 
@@ -170,62 +175,63 @@ body {
 </div>
 
 <script>
-let isolatedLine = null;
-const walletLine = document.getElementById("walletLine");
+let active = null;
 
-function updateNumbersVisibility(activeLine) {
-  document.querySelectorAll(".numbers span").forEach(span => {
-    if (!activeLine) {
-      span.classList.remove("hidden-number");
-    } else if (span.dataset.line !== activeLine) {
-      span.classList.add("hidden-number");
-    }
+function hideNumbers(line) {
+  document.querySelectorAll(".numbers span").forEach(s => {
+    s.classList.toggle("hidden-number", line && s.dataset.line !== line);
   });
 }
 
-document.querySelectorAll(".content p[data-line]").forEach(p => {
+document.querySelectorAll("[data-line]").forEach(p => {
   p.addEventListener("click", () => {
     const line = p.dataset.line;
 
-    if (isolatedLine === line) {
-      isolatedLine = null;
-      walletLine.style.display = "none";
+    const wallet = document.getElementById("walletSub");
+    const coin   = document.getElementById("coinSub");
+    const pump   = document.getElementById("pumpSub");
+    const supply = document.getElementById("supplySub");
+
+    if (active === line) {
+      active = null;
+      wallet.style.display = "none";
+      coin.style.display   = "none";
+      pump.style.display   = "none";
+      supply.style.display = "none";
 
       document.querySelectorAll(".content p").forEach(el =>
         el.classList.remove("hidden-line")
       );
-      updateNumbersVisibility(null);
+      hideNumbers(null);
     } else {
-      isolatedLine = line;
+      active = line;
 
       document.querySelectorAll(".content p").forEach(el => {
-        if (el.dataset.line !== line && !el.classList.contains("spacer") && !el.classList.contains("subline")) {
+        if (!el.classList.contains("spacer") &&
+            !el.classList.contains("subline") &&
+            el.dataset.line !== line) {
           el.classList.add("hidden-line");
         }
       });
 
-      walletLine.style.display = (line === "1") ? "block" : "none";
-      updateNumbersVisibility(line);
+      wallet.style.display = line === "1" ? "block" : "none";
+      coin.style.display   = line === "2" ? "block" : "none";
+      pump.style.display   = line === "3" ? "block" : "none";
+      supply.style.display = line === "4" ? "block" : "none";
+
+      hideNumbers(line);
     }
   });
 });
 
-const numberSets = {
-  latin: ["","1","","2","","3","","4",""],
-};
-
-function setNumbers() {
-  const container = document.getElementById("numbers");
-  container.innerHTML = "";
-  numberSets.latin.forEach((n, i) => {
-    const span = document.createElement("span");
-    span.textContent = n;
-    span.dataset.line = ["","1","","2","","3","","4",""][i];
-    container.appendChild(span);
-  });
-}
-
-setNumbers();
+const nums = ["","1","","2","","3","","4",""];
+const n = document.getElementById("numbers");
+nums.forEach(v => {
+  const s = document.createElement("span");
+  s.textContent = v;
+  s.dataset.line = v;
+  n.appendChild(s);
+});
 </script>
 
 </body>
