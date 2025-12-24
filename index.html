@@ -115,10 +115,17 @@ body {
   color: #111;
   white-space: nowrap;
   overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.25s ease;
 }
 
 .spacer {
   color: transparent;
+  cursor: default;
+}
+
+.hidden-line {
+  opacity: 0;
 }
 
 .lang-toggle {
@@ -190,14 +197,14 @@ body {
 
     <div class="numbers" id="numbers"></div>
 
-    <div class="content">
-      <p>Creator Wallet: 5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h</p>
+    <div class="content" id="content">
+      <p data-line="1">Creator Wallet: 5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h</p>
       <p class="spacer">.</p>
-      <p>Coin Address: 6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump</p>
+      <p data-line="2">Coin Address: 6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump</p>
       <p class="spacer">.</p>
-      <p>Created on pump.fun https://pump.fun/coin/6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump</p>
+      <p data-line="3">Created on pump.fun https://pump.fun/coin/6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump</p>
       <p class="spacer">.</p>
-      <p>There are 700 million DFI coins</p>
+      <p data-line="4">There are 700 million DFI coins</p>
       <p class="spacer">.</p>
     </div>
 
@@ -205,6 +212,28 @@ body {
 </div>
 
 <script>
+let isolatedLine = null;
+
+document.querySelectorAll(".content p[data-line]").forEach(p => {
+  p.addEventListener("click", () => {
+    const line = p.dataset.line;
+
+    if (isolatedLine === line) {
+      isolatedLine = null;
+      document.querySelectorAll(".content p").forEach(el =>
+        el.classList.remove("hidden-line")
+      );
+    } else {
+      isolatedLine = line;
+      document.querySelectorAll(".content p").forEach(el => {
+        if (el.dataset.line !== line && !el.classList.contains("spacer")) {
+          el.classList.add("hidden-line");
+        }
+      });
+    }
+  });
+});
+
 const numberSets = {
   latin: ["1","","2","","3","","4",""],
   roman: ["Ⅰ","","Ⅱ","","Ⅲ","","Ⅳ",""],
