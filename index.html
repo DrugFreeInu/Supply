@@ -119,7 +119,6 @@ body {
 
 .spacer {
   color: transparent;
-  cursor: default;
   pointer-events: none;
 }
 
@@ -127,6 +126,8 @@ body {
   font-size: 15px;
   color: #444;
   padding-left: 14px;
+  height: 30px;
+  line-height: 30px;
   display: none;
   pointer-events: none;
 }
@@ -149,6 +150,7 @@ body {
     <div class="numbers" id="numbers"></div>
 
     <div class="content">
+
       <p class="spacer">.</p>
 
       <p data-line="1">Creator Wallet</p>
@@ -170,10 +172,13 @@ body {
       <p class="spacer">.</p>
 
       <p data-line="4">Coin Supply</p>
-      <p class="subline" id="supplySub">
-        6GJbNxjo4wMA6H5KNvBrTsQfptbwFx1L99RHrzaLpump
-      </p>
+      <p class="subline supply">Started at 1 bill</p>
+      <p class="subline supply">Now it’s 700 mill</p>
+      <p class="subline supply">Burnt the supply</p>
+      <p class="subline supply">Don’t question why</p>
+      <p class="subline supply">Look past the sky</p>
       <p class="spacer">.</p>
+
     </div>
 
   </div>
@@ -191,18 +196,11 @@ function hideNumbers(line) {
 document.querySelectorAll(".content p[data-line]").forEach(p => {
   p.addEventListener("click", () => {
     const line = p.dataset.line;
-
-    const wallet = document.getElementById("walletSub");
-    const coin   = document.getElementById("coinSub");
-    const pump   = document.getElementById("pumpSub");
-    const supply = document.getElementById("supplySub");
+    const allSublines = document.querySelectorAll(".subline");
 
     if (active === line) {
       active = null;
-      wallet.style.display = "none";
-      coin.style.display   = "none";
-      pump.style.display   = "none";
-      supply.style.display = "none";
+      allSublines.forEach(s => s.style.display = "none");
 
       document.querySelectorAll(".content p").forEach(el =>
         el.classList.remove("hidden-line")
@@ -219,10 +217,15 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
         }
       });
 
-      wallet.style.display = line === "1" ? "block" : "none";
-      coin.style.display   = line === "2" ? "block" : "none";
-      pump.style.display   = line === "3" ? "block" : "none";
-      supply.style.display = line === "4" ? "block" : "none";
+      allSublines.forEach(s => s.style.display = "none");
+
+      if (line === "1") document.getElementById("walletSub").style.display = "block";
+      if (line === "2") document.getElementById("coinSub").style.display = "block";
+      if (line === "3") document.getElementById("pumpSub").style.display = "block";
+      if (line === "4") {
+        document.querySelectorAll(".subline.supply")
+          .forEach(s => s.style.display = "block");
+      }
 
       hideNumbers(line);
     }
