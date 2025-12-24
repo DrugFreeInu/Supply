@@ -204,6 +204,9 @@ body {
 
       <p data-line="3">Created on pump.fun</p>
       <p class="spacer">.</p>
+
+      <p data-line="4">Total Supply</p>
+      <p class="spacer">.</p>
     </div>
 
   </div>
@@ -245,10 +248,10 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
 });
 
 const numberSets = {
-  latin: ["","1","","2","","3",""],
-  roman: ["","Ⅰ","","Ⅱ","","Ⅲ",""],
-  arabic: ["","١","","٢","","٣",""],
-  chinese: ["","一","","二","","三",""]
+  latin: ["","1","","2","","3","","4",""],
+  roman: ["","Ⅰ","","Ⅱ","","Ⅲ","","Ⅳ",""],
+  arabic: ["","١","","٢","","٣","","٤",""],
+  chinese: ["","一","","二","","三","","四",""]
 };
 
 function setNumbers(type) {
@@ -257,7 +260,7 @@ function setNumbers(type) {
   numberSets[type].forEach((n, i) => {
     const span = document.createElement("span");
     span.textContent = n;
-    span.dataset.line = ["","1","","2","","3",""][i];
+    span.dataset.line = ["","1","","2","","3","","4",""][i];
     container.appendChild(span);
   });
   document.getElementById("langMenu").style.display = "none";
