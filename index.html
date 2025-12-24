@@ -117,6 +117,13 @@ body {
   transition: opacity 0.25s ease;
 }
 
+.subline {
+  font-size: 15px;
+  color: #444;
+  padding-left: 14px;
+  display: none;
+}
+
 .spacer {
   color: transparent;
   cursor: default;
@@ -126,50 +133,6 @@ body {
   opacity: 0;
 }
 
-.lang-toggle {
-  position: absolute;
-  top: 42px;
-  left: 18px;
-  width: 56px;
-  height: 44px;
-  border: 2px solid #8b7aa8;
-  border-radius: 10px;
-  background: #ffffff;
-  color: #8b7aa8;
-  font-size: 26px;
-  font-weight: 700;
-  cursor: pointer;
-  z-index: 4;
-}
-
-.lang-menu {
-  position: absolute;
-  top: 92px;
-  left: 18px;
-  width: 120px;
-  background: #ffffff;
-  border: 2px solid #8b7aa8;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-  display: none;
-  z-index: 5;
-}
-
-.lang-menu button {
-  width: 100%;
-  padding: 10px;
-  background: none;
-  border: none;
-  text-align: left;
-  font-size: 16px;
-  font-weight: 600;
-  color: #8b7aa8;
-  cursor: pointer;
-}
-
-.lang-menu button:hover {
-  background: #f3f0f8;
-}
 </style>
 </head>
 
@@ -182,21 +145,15 @@ body {
       <img class="main" src="F01D55AE-5D15-49DF-AD86-FC79496300A2.jpeg">
     </div>
 
-    <button class="lang-toggle" onclick="toggleMenu()">▾</button>
-
-    <div class="lang-menu" id="langMenu">
-      <button onclick="setNumbers('latin')">1 – Latin</button>
-      <button onclick="setNumbers('roman')">Ⅰ – Roman</button>
-      <button onclick="setNumbers('arabic')">١ – Arabic</button>
-      <button onclick="setNumbers('chinese')">一 – Chinese</button>
-    </div>
-
     <div class="numbers" id="numbers"></div>
 
     <div class="content" id="content">
       <p class="spacer">.</p>
 
       <p data-line="1">Creator Wallet</p>
+      <p class="subline" id="walletLine">
+        5jr8hLgG4M54JRD1v8K2bgbCVfwRMeyRM66UQQTWGu2h
+      </p>
       <p class="spacer">.</p>
 
       <p data-line="2">Coin Address</p>
@@ -214,6 +171,7 @@ body {
 
 <script>
 let isolatedLine = null;
+const walletLine = document.getElementById("walletLine");
 
 function updateNumbersVisibility(activeLine) {
   document.querySelectorAll(".numbers span").forEach(span => {
@@ -231,17 +189,22 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
 
     if (isolatedLine === line) {
       isolatedLine = null;
+      walletLine.style.display = "none";
+
       document.querySelectorAll(".content p").forEach(el =>
         el.classList.remove("hidden-line")
       );
       updateNumbersVisibility(null);
     } else {
       isolatedLine = line;
+
       document.querySelectorAll(".content p").forEach(el => {
-        if (el.dataset.line !== line && !el.classList.contains("spacer")) {
+        if (el.dataset.line !== line && !el.classList.contains("spacer") && !el.classList.contains("subline")) {
           el.classList.add("hidden-line");
         }
       });
+
+      walletLine.style.display = (line === "1") ? "block" : "none";
       updateNumbersVisibility(line);
     }
   });
@@ -249,29 +212,20 @@ document.querySelectorAll(".content p[data-line]").forEach(p => {
 
 const numberSets = {
   latin: ["","1","","2","","3","","4",""],
-  roman: ["","Ⅰ","","Ⅱ","","Ⅲ","","Ⅳ",""],
-  arabic: ["","١","","٢","","٣","","٤",""],
-  chinese: ["","一","","二","","三","","四",""]
 };
 
-function setNumbers(type) {
+function setNumbers() {
   const container = document.getElementById("numbers");
   container.innerHTML = "";
-  numberSets[type].forEach((n, i) => {
+  numberSets.latin.forEach((n, i) => {
     const span = document.createElement("span");
     span.textContent = n;
     span.dataset.line = ["","1","","2","","3","","4",""][i];
     container.appendChild(span);
   });
-  document.getElementById("langMenu").style.display = "none";
 }
 
-function toggleMenu() {
-  const menu = document.getElementById("langMenu");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-
-setNumbers("latin");
+setNumbers();
 </script>
 
 </body>
